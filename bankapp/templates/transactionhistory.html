@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% extends "home.html" %}
+      {% block tmp %}
+<br>
+
+<form method="post" action="" enctype="multipart/form-data">
+ <div class="col d-flex justify-content-center">
+      <div class="card bg-light" style="width: 70rem;">
+  <div class="card-body">
+    <h2 class="card-title"style="text-align: center;"><b>TRANSACTION HISTORY</b></h2>
+    <p class="card-text">
+<h4 style="background-color:#8B0000;color:white">
+    DEBIT TRANSACTIONS
+</h4>
+      <br>
+      {% if debittransactions %}
+<table class="table">
+<tr>
+<td><b>Date</b></td>
+<td><b>Account Number</b></td>
+<td><b>Remarks</b></td>
+<td><b>Amount</b></td>
+
+         </tr>
+{% for transaction in debittransactions %}
+    <tr>
+<td>{{ transaction.date }}</td>
+<td>{{ transaction.to_account_number }}</td>
+<td>{{ transaction.remarks }}</td>
+<td><b>Rs.{{ transaction.amount }}</b></td>
+  </tr>
+{% endfor %}
+
+</table>
+      {% else %}
+      <H4>NO RECORDS FOUND!</H4>
+      {% endif %}
+<h4 style="background-color:green;color:white">
+    CREDIT TRANSACTIONS
+</h4>
+      <br>
+      {% if credittransactions %}
+<table class="table">
+<tr>
+<td><b>Date</b></td>
+<td><b>Account Number</b></td>
+<td><b>Remarks</b></td>
+<td><b>Amount</b></td>
+
+         </tr>
+{% for transaction in credittransactions %}
+    <tr>
+<td>{{ transaction.date }}</td>
+<td>{{ transaction.to_account_number }}</td>
+<td>{{ transaction.remarks }}</td>
+<td><b>Rs.{{ transaction.amount }}</b></td>
+  </tr>
+{% endfor %}
+
+</table>
+      {% else %}
+      <H4>NO RECORDS FOUND!</H4>
+
+      {% endif %}
+    </p>
+
+  </div>
+</div>
+         </div>
+    </form>
+                    {% endblock %}
